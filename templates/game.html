@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.js"></script>
+    {% compress 'js' %}
+        <script src="{{ url_for('static', filename='game.js') }}" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+    <title>{{ g.game_name }}</title>
+</head>
+
+<body>
+    <h2>Game: {{ g.game_name }}</h2>
+
+    Your name:
+    <input type="text" id="txtName">
+    <button onclick="updateName()" id="btnUpdateName">Update</button>
+    <br>
+    <br>
+    <audio id="audio" src="{{ url_for('static', filename='chime.ogg') }}"></audio>
+    <input type="checkbox" id="chkNotify">
+    <label for="chkNotify">Play notification sounds</label>
+
+    <h3>Players:</h3>
+    <div id="guesserStatus">Select a player to be the guesser.</div>
+    <br>
+    <div id="playerList"></div>
+    <br>
+    <button onclick="start()" id="btnStart">Start!</button>
+    <button onclick="end()" id="btnEnd" disabled=true>End round</button>
+    <br>
+    <h3 id="gameInfo"></h3>
+
+    <input type="text" id="txtClue" hidden=true autocomplete="off">
+    <button onclick="submitClue()" id="btnSubmitClue" hidden=true disabled=true>Submit clue</button>
+    <button onclick="unsubmitClue()" id="btnUnsubmitClue" hidden=true>Unsubmit clue</button>
+    <br>
+    <br>
+    <table id="clueTable"></table>
+
+    <input type="text" id="txtGuess" hidden=true autocomplete="off">
+    <button onclick="submitGuess()" id="btnSubmitGuess" hidden=true>Submit guess</button>
+
+    <h3 id="approvingStatus"></h3>
+    <div id="approvingTable"></div>
+    <br>
+    <button onclick="submitApprovedClues()" id="btnSubmitApprovedClues" hidden=true>Submit approved clues</button>
+
+    <h3 id="gameOutcome"></h3>
+    <button onclick="end()" id="btnNewRound" hidden=true>New round</button>
+</body>
+
+</html>

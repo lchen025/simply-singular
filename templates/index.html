@@ -1,0 +1,24 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" charset="utf-8">
+    function joinGame() {
+        const game_name = document.getElementById('txtGame').value;
+        location.pathname = game_name;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        var txtGame = document.getElementById('txtGame');
+        txtGame.addEventListener('keyup', (e) => {
+            const button = document.getElementById('btnJoinGame');
+            button.disabled = !txtGame.value;
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                button.click();
+            }
+        });
+    });
+</script>
+Enter a game name:
+<br>
+<br>
+<input type="text" id="txtGame" autocomplete="off">
+<button onclick="joinGame()" id="btnJoinGame" disabled=true>Join game</button>
