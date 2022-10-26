@@ -1,6 +1,5 @@
 from flask import Flask, render_template, g, request, redirect
 from flask_socketio import SocketIO, join_room, emit
-from flask_static_compress import FlaskStaticCompress
 
 from functools import partial
 from random import choice
@@ -9,7 +8,6 @@ from game import JustOne
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-compress = FlaskStaticCompress(app)
 
 GAMES = {}  # Map of game name to JustOne object.
 SESSIONS = {}  # Map of session id to [player name, JustOne game] tuple.
