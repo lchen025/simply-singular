@@ -11,6 +11,8 @@ WORKDIR $APP_HOME
 COPY . ./
 
 # Install production dependencies.
+RUN apt-get update
+RUN apt-get -y install gcc
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Run the web service on container startup. Here we use the gunicorn
